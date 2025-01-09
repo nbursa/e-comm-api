@@ -18,6 +18,15 @@ func (pc *ProductController) GetCategories(c *gin.Context) {
     c.JSON(http.StatusOK, categories)
 }
 
+func (pc *ProductController) GetProducts(c *gin.Context) {
+	var products []models.Product
+	if err := pc.DB.Find(&products).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+	}
+	c.JSON(http.StatusOK, products)
+}
+
 func (pc *ProductController) GetProduct(c *gin.Context) {
     var product models.Product
     id := c.Param("id")

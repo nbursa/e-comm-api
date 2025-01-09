@@ -16,5 +16,9 @@ func RegisterRoutes(r *gin.Engine, productController *controllers.ProductControl
     })
 
     r.GET("/products/categories", productController.GetCategories)
+		r.GET("/products", productController.GetProducts)
     r.GET("/products/:id", productController.GetProduct)
+		r.POST("/products", productController.CreateProduct)
+    r.PUT("/products/:id", productController.UpdateProduct)
+    r.DELETE("/products/:id", productController.DeleteProduct)
 }
