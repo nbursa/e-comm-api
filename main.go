@@ -27,6 +27,8 @@ func main() {
         AllowCredentials: false,
     }))
 
+		r.Static("/static", "./static")
+
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
 
