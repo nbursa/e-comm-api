@@ -1,6 +1,6 @@
 # E-commerce-backend
 
-This project is a comprehensive API service for an e-commerce platform, built using the Gin framework in Go. It forms the backend layer of a three-tier system, providing robust and scalable solutions for managing products and their categories. This API service ensures efficient data handling and seamless integration with client applications and databases.
+This project is a simple API service for an e-commerce platform, built using the Gin framework in Go. It forms the backend layer of a three-tier system, providing robust and scalable solutions for managing products and their categories. This API service ensures efficient data handling and seamless integration with client applications and databases.
 
 **🚧 Work In Progress 🚧**
 
