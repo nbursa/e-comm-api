@@ -24,7 +24,15 @@ func main() {
 			}
 		}
 
-    corsOrigin := os.Getenv("CORS_ORIGIN")
+    prodOrigin := os.Getenv("CORS_ORIGIN")
+    devOrigin := os.Getenv("DEV_ORIGIN")
+
+		var allowedOrigins []string
+    if os.Getenv("GO_ENV") == "production" {
+        allowedOrigins = []string{prodOrigin}
+    } else {
+        allowedOrigins = []string{devOrigin}
+    }
 
     db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
 		if err != nil {
@@ -37,7 +45,7 @@ func main() {
 
     r := gin.Default()
     r.Use(cors.New(cors.Config{
-        AllowOrigins:     []string{corsOrigin},
+        AllowOrigins:     allowedOrigins,
         AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
         AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
         AllowCredentials: false,
