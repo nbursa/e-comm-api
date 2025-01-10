@@ -21,6 +21,18 @@ func (pc *ProductController) GetCategories(c *gin.Context) {
 	c.JSON(http.StatusOK, categories)
 }
 
+func (pc *ProductController) GetProductsByCategory(c *gin.Context) {
+	category := c.Param("category")
+
+	var products []models.Product
+	if err := pc.DB.Where("category = ?", category).Find(&products).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch products"})
+		return
+	}
+
+	c.JSON(http.StatusOK, products)
+}
+
 func (pc *ProductController) GetProducts(c *gin.Context) {
     var products []models.Product
     if err := pc.DB.Find(&products).Error; err != nil {
