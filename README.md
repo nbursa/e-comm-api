@@ -2,6 +2,12 @@
 
 This project is API for managing products and their categories built using the Gin framework in Go. It serves as a simple API for managing products and their categories.
 
+**🚧 Work In Progress 🚧**
+
+## Client Application
+
+The client application for this backend can be found at the following repository: [E-commerce Platform Client](https://github.com/nbursa/e-commerce-platform). This client app provides a user-friendly interface for interacting with the API, allowing users to browse products.
+
 ## Setup Instructions
 
 1. **Clone the repository:**
