@@ -13,9 +13,12 @@ type ProductController struct {
 }
 
 func (pc *ProductController) GetCategories(c *gin.Context) {
-    var categories []string
-    pc.DB.Model(&models.Product{}).Distinct().Pluck("Category", &categories)
-    c.JSON(http.StatusOK, categories)
+	var categories []string
+	if err := pc.DB.Model(&models.Product{}).Distinct().Pluck("Category", &categories).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+	}
+	c.JSON(http.StatusOK, categories)
 }
 
 func (pc *ProductController) GetProducts(c *gin.Context) {
