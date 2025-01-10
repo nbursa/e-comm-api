@@ -6,7 +6,7 @@ This project is a comprehensive API service for an e-commerce platform, built us
 
 ## Client Application
 
-The client application for this backend can be found at the following repository: [E-commerce Platform Client](https://github.com/nbursa/e-commerce-platform). This client app provides a user-friendly interface for interacting with the API, allowing users to browse products.
+The client application for this backend can be found at the following repository: [E-commerce Platform Client](https://github.com/nbursa/e-commerce-platform). This client app provides a user-friendly interface for interacting with the API, allowing users to browse products. 🚀 [Live Demo](https://shop.nenadbursac.com)
 
 ## Setup Instructions
 
