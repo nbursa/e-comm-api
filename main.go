@@ -5,16 +5,24 @@ import (
 	"e-comm-backend/database"
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
+	"os"
 
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth_gin"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
 func main() {
+    err := godotenv.Load()
+    if err != nil {
+        panic("Error loading .env file")
+    }
+
+    corsOrigin := os.Getenv("CORS_ORIGIN")
     db, _ := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
     db.AutoMigrate(&models.Product{})
 
@@ -23,7 +31,7 @@ func main() {
 
     r := gin.Default()
     r.Use(cors.New(cors.Config{
-        AllowOrigins:     []string{"*"},
+        AllowOrigins:     []string{corsOrigin},
         AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
         AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
         AllowCredentials: false,
