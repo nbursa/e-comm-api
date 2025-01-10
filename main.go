@@ -26,8 +26,6 @@ func main() {
 
     corsOrigin := os.Getenv("CORS_ORIGIN")
 
-		// corsOrigins := strings.Split(os.Getenv("CORS_ORIGIN"), ",")
-
     db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
 		if err != nil {
 			panic("failed to connect database")
