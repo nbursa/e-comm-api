@@ -34,13 +34,6 @@ func main() {
     database.SeedDatabase(db)
 
     r := gin.Default()
-
-		port := os.Getenv("PORT")
-    if port == "" {
-        port = "8080" 
-    }
-    r.Run(":" + port)
-
     r.Use(cors.New(cors.Config{
         AllowOrigins:     []string{corsOrigin},
         AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
@@ -57,5 +50,11 @@ func main() {
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
 
-    r.Run()
+
+		port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" 
+    }
+		
+    r.Run(":" + port)
 }
