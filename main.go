@@ -25,6 +25,9 @@ func main() {
     corsOrigin := os.Getenv("CORS_ORIGIN")
 
     db, _ := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
+		if err != nil {
+			panic("failed to connect database")
+		}
     db.AutoMigrate(&models.Product{})
 
 		// Seed the database
