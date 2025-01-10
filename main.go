@@ -6,7 +6,6 @@ import (
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
 	"os"
-	"strings"
 
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth_gin"
@@ -25,9 +24,9 @@ func main() {
 			}
 		}
 
-    // corsOrigin := os.Getenv("CORS_ORIGIN")
+    corsOrigin := os.Getenv("CORS_ORIGIN")
 
-		corsOrigins := strings.Split(os.Getenv("CORS_ORIGIN"), ",")
+		// corsOrigins := strings.Split(os.Getenv("CORS_ORIGIN"), ",")
 
     db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
 		if err != nil {
@@ -40,7 +39,7 @@ func main() {
 
     r := gin.Default()
     r.Use(cors.New(cors.Config{
-        AllowOrigins:     corsOrigins,
+        AllowOrigins:     []string{corsOrigin},
         AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
         AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
         AllowCredentials: false,
