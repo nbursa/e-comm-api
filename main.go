@@ -6,6 +6,8 @@ import (
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
 
+	"github.com/didip/tollbooth"
+	"github.com/didip/tollbooth_gin"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlite"
@@ -28,6 +30,10 @@ func main() {
     }))
 
 		r.Static("/static", "./static")
+
+		// Rate limiting middleware
+    limiter := tollbooth.NewLimiter(1, nil) // 1 request per second
+    r.Use(tollbooth_gin.LimitHandler(limiter))
 
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
