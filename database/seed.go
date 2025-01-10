@@ -5,10 +5,16 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
 func SeedDatabase(db *gorm.DB) {
+	err := godotenv.Load()
+    if err != nil {
+        panic("Error loading .env file")
+    }
+		
 	// Check if the database is empty and seed it with mock data
 	var count int64
 	baseURL := os.Getenv("BASE_URL")
