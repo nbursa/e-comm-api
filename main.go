@@ -17,14 +17,16 @@ import (
 )
 
 func main() {
-    err := godotenv.Load()
-    if err != nil {
-        panic("Error loading .env file")
-    }
+		if os.Getenv("GO_ENV") != "production" {
+			err := godotenv.Load()
+			if err != nil {
+					panic("Error loading .env file")
+			}
+		}
 
     corsOrigin := os.Getenv("CORS_ORIGIN")
 
-    db, _ := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
+    db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
 		if err != nil {
 			panic("failed to connect database")
 		}
@@ -55,6 +57,6 @@ func main() {
     if port == "" {
         port = "8080" 
     }
-		
+
     r.Run(":" + port)
 }
