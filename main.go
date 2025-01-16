@@ -5,8 +5,10 @@ import (
 	"e-comm-backend/database"
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
+	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth_gin"
@@ -18,52 +20,66 @@ import (
 )
 
 func main() {
-		if os.Getenv("GO_ENV") != "production" {
-			err := godotenv.Load()
-			if err != nil {
-					panic("Error loading .env file")
-			}
-		}
-
-    prodOrigin := os.Getenv("CORS_ORIGIN")
-    devOrigin := os.Getenv("DEV_ORIGIN")
-
-		var allowedOrigins []string
-    if os.Getenv("GO_ENV") == "production" {
-        allowedOrigins = strings.Split(prodOrigin, ",")
-    } else {
-        allowedOrigins = strings.Split(devOrigin, ",")
-    }
-
-    db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
+	// Load environment variables
+	if os.Getenv("GO_ENV") != "production" {
+		err := godotenv.Load()
 		if err != nil {
-			panic("failed to connect database")
+			panic("Error loading .env file")
 		}
-    db.AutoMigrate(&models.Product{})
+	}
 
-    database.SeedDatabase(db)
+	prodOrigin := os.Getenv("CORS_ORIGIN")
+	devOrigin := os.Getenv("DEV_ORIGIN")
 
-    r := gin.Default()
-    r.Use(cors.New(cors.Config{
-        AllowOrigins:     allowedOrigins,
-        AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-        AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
-        AllowCredentials: false,
-    }))
+	var allowedOrigins []string
+	if os.Getenv("GO_ENV") == "production" {
+		allowedOrigins = strings.Split(prodOrigin, ",")
+	} else {
+		allowedOrigins = strings.Split(devOrigin, ",")
+	}
 
-    limiter := tollbooth.NewLimiter(10, nil)
-    r.Use(tollbooth_gin.LimitHandler(limiter))
+	db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+	db.AutoMigrate(&models.Product{})
 
-    r.Static("/api/static/assets", "./static/assets")
-    r.Static("/api/static/images", "./static/images")
+	database.SeedDatabase(db)
 
-    productController := &controllers.ProductController{DB: db}
-    routes.RegisterRoutes(r, productController)
+	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     allowedOrigins,
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		AllowCredentials: false,
+		MaxAge:           12 * time.Hour,
+		AllowWildcard:    true,
+	}))
 
-		port := os.Getenv("PORT")
-    if port == "" {
-        port = "8080" 
-    }
+	limiter := tollbooth.NewLimiter(10, nil)
+	r.Use(tollbooth_gin.LimitHandler(limiter))
 
-    r.Run(":" + port)
+	// Debug logging middleware
+	r.Use(func(c *gin.Context) {
+		fmt.Printf("[DEBUG] Request: %s %s\n", c.Request.Method, c.Request.URL.Path)
+		c.Next()
+	})
+
+	r.Static("/api/static/assets", "./static/assets")
+	r.Static("/api/static/images", "./static/images")
+
+	productController := &controllers.ProductController{DB: db}
+	routes.RegisterRoutes(r, productController)
+
+	// SPA fallback
+	r.NoRoute(func(c *gin.Context) {
+		c.File("./static/index.html")
+	})
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	r.Run(":" + port)
 }
