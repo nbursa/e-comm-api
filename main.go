@@ -66,7 +66,6 @@ func main() {
 		c.Next()
 	})
 
-	r.Static("/api/static/assets", "./static/assets")
 	r.Static("/api/static/images", "./static/images")
 
 	productController := &controllers.ProductController{DB: db}
