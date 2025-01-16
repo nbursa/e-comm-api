@@ -28,6 +28,7 @@ func main() {
 		}
 	}
 
+	// Set CORS origins based on environment
 	prodOrigin := os.Getenv("CORS_ORIGIN")
 	devOrigin := os.Getenv("DEV_ORIGIN")
 
@@ -38,12 +39,12 @@ func main() {
 		allowedOrigins = strings.Split(devOrigin, ",")
 	}
 
+	// Database setup
 	db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
 	db.AutoMigrate(&models.Product{})
-
 	database.SeedDatabase(db)
 
 	r := gin.Default()
@@ -73,6 +74,10 @@ func main() {
 
 	// SPA fallback
 	r.NoRoute(func(c *gin.Context) {
+		if strings.HasPrefix(c.Request.URL.Path, "/api") {
+			c.JSON(404, gin.H{"error": "API route not found"})
+			return
+		}
 		c.File("./static/index.html")
 	})
 
