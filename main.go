@@ -55,8 +55,6 @@ func main() {
     r.Use(tollbooth_gin.LimitHandler(limiter))
 
     r.Static("/api/static", "./static")
-    r.Static("/api/assets", "./static/assets")
-    r.StaticFile("/api/favicon.ico", "./static/assets/favicon.ico")
 
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
