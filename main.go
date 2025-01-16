@@ -54,7 +54,8 @@ func main() {
     limiter := tollbooth.NewLimiter(1, nil)
     r.Use(tollbooth_gin.LimitHandler(limiter))
 
-    r.Static("/api/static", "./static")
+    r.Static("/api/static/images", "./static/images")
+    r.Static("/api/static/assets", "./static/assets")
 
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
