@@ -42,14 +42,41 @@ func (pc *ProductController) GetProducts(c *gin.Context) {
     c.JSON(http.StatusOK, products)
 }
 
+// func (pc *ProductController) GetProduct(c *gin.Context) {
+//     var product models.Product
+//     id := c.Param("id")
+//     if err := pc.DB.First(&product, id).Error; err != nil {
+//         c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
+//         return
+//     }
+//     c.JSON(http.StatusOK, product)
+// }
 func (pc *ProductController) GetProduct(c *gin.Context) {
-    var product models.Product
-    id := c.Param("id")
-    if err := pc.DB.First(&product, id).Error; err != nil {
-        c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
-        return
-    }
-    c.JSON(http.StatusOK, product)
+	// Get ID from URL parameter
+	id := c.Param("id")
+
+	// Validate ID
+	if id == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
+			return
+	}
+
+	// Query database for product
+	var product models.Product
+	if err := pc.DB.First(&product, id).Error; err != nil {
+			if err == gorm.ErrRecordNotFound {
+					c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
+					return
+			}
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
+			return
+	}
+
+	// Return success response
+	c.JSON(http.StatusOK, gin.H{
+			"status": "success",
+			"data": product,
+	})
 }
 
 func (pc *ProductController) CreateProduct(c *gin.Context) {

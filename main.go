@@ -6,6 +6,7 @@ import (
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
 	"os"
+	"strings"
 
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth_gin"
@@ -29,9 +30,9 @@ func main() {
 
 		var allowedOrigins []string
     if os.Getenv("GO_ENV") == "production" {
-        allowedOrigins = []string{prodOrigin}
+        allowedOrigins = strings.Split(prodOrigin, ",")
     } else {
-        allowedOrigins = []string{devOrigin}
+        allowedOrigins = strings.Split(devOrigin, ",")
     }
 
     db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
@@ -40,7 +41,6 @@ func main() {
 		}
     db.AutoMigrate(&models.Product{})
 
-		// Seed the database
     database.SeedDatabase(db)
 
     r := gin.Default()
@@ -51,15 +51,15 @@ func main() {
         AllowCredentials: false,
     }))
 
-		r.Static("/static", "./static")
-
-		// Rate limiting middleware
-    limiter := tollbooth.NewLimiter(1, nil) // 1 request per second
+    limiter := tollbooth.NewLimiter(1, nil)
     r.Use(tollbooth_gin.LimitHandler(limiter))
+
+    r.Static("/api/static", "./static")
+    r.Static("/api/assets", "./static/assets")
+    r.StaticFile("/api/favicon.ico", "./static/assets/favicon.ico")
 
     productController := &controllers.ProductController{DB: db}
     routes.RegisterRoutes(r, productController)
-
 
 		port := os.Getenv("PORT")
     if port == "" {

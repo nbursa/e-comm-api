@@ -15,11 +15,18 @@ func RegisterRoutes(r *gin.Engine, productController *controllers.ProductControl
         c.Status(http.StatusNoContent)
     })
 
-    r.GET("/products/categories", productController.GetCategories)
-		r.GET("/products/category/:category", productController.GetProductsByCategory)
-		r.GET("/products", productController.GetProducts)
-    r.GET("/products/:id", productController.GetProduct)
-		r.POST("/products", productController.CreateProduct)
-    r.PUT("/products/:id", productController.UpdateProduct)
-    r.DELETE("/products/:id", productController.DeleteProduct)
+		api := r.Group("/api")
+    {
+        api.GET("/products/categories", productController.GetCategories)
+        api.GET("/products/category/:category", productController.GetProductsByCategory)
+        api.GET("/products", productController.GetProducts)
+        api.GET("/products/:id", productController.GetProduct)
+        api.POST("/products", productController.CreateProduct)
+        api.PUT("/products/:id", productController.UpdateProduct)
+        api.DELETE("/products/:id", productController.DeleteProduct)
+    }
+
+		r.NoRoute(func(c *gin.Context) {
+			c.File("./static/index.html")
+		})
 }
