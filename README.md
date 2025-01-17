@@ -14,7 +14,7 @@ The client application for this backend can be found at the following repository
 
    ```
    git clone https://github.com/nbursa/e-comm-api
-   cd e-comm-backend
+   cd e-comm-api
    ```
 
 2. **Install dependencies:**
