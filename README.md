@@ -1,4 +1,4 @@
-# E-commerce-backend
+# E-Comm-Api
 
 This project is a simple API service for an e-commerce platform, built using the Gin framework in Go. It forms the backend layer of a three-tier system, providing robust and scalable solutions for managing products and their categories. This API service ensures efficient data handling and seamless integration with client applications and databases.
 
@@ -6,14 +6,14 @@ This project is a simple API service for an e-commerce platform, built using the
 
 ## Client Application
 
-The client application for this backend can be found at the following repository: [E-commerce Platform Client](https://github.com/nbursa/e-commerce-platform). This client app provides a user-friendly interface for interacting with the API, allowing users to browse products. 🚀 [Live Demo](https://shop.nenadbursac.com)
+The client application for this backend can be found at the following repository: [E-commerce Platform Client](https://github.com/nbursa/e-comm-client). This client app provides a user-friendly interface for interacting with the API, allowing users to browse products. 🚀 [Live Demo](https://shop.nenadbursac.com)
 
 ## Setup Instructions
 
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/nbursa/e-comm-backend
+   git clone https://github.com/nbursa/e-comm-api
    cd e-comm-backend
    ```
 

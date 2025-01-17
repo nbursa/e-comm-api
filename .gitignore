@@ -28,6 +28,10 @@ go.work
 
 # Environment variables
 .env
+.env.local
+.env.development
+.env.test
+.env.production
 
 # Compiled binary
 /shop.db

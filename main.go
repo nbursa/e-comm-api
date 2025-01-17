@@ -20,7 +20,6 @@ import (
 )
 
 func main() {
-	// Load environment variables
 	if os.Getenv("GO_ENV") != "production" {
 		err := godotenv.Load()
 		if err != nil {
@@ -29,15 +28,10 @@ func main() {
 	}
 
 	// Set CORS origins based on environment
-	prodOrigin := os.Getenv("CORS_ORIGIN")
-	devOrigin := os.Getenv("DEV_ORIGIN")
+	origin := os.Getenv("CORS_ORIGIN")
+	var allowedOrigins []string = strings.Split(origin, ",")
 
-	var allowedOrigins []string
-	if os.Getenv("GO_ENV") == "production" {
-		allowedOrigins = strings.Split(prodOrigin, ",")
-	} else {
-		allowedOrigins = strings.Split(devOrigin, ",")
-	}
+	fmt.Printf("[INFO] Allowed Origins: %v\n", allowedOrigins)
 
 	// Database setup
 	db, err := gorm.Open(sqlite.Open("shop.db"), &gorm.Config{})
@@ -45,9 +39,12 @@ func main() {
 		panic("failed to connect database")
 	}
 	db.AutoMigrate(&models.Product{})
-	database.SeedDatabase(db)
+
+	reseed := os.Getenv("RESEED_DB") == "true"
+	database.SeedDatabase(db, reseed)
 
 	r := gin.Default()
+
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     allowedOrigins,
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
