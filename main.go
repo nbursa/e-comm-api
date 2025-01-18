@@ -6,6 +6,7 @@ import (
 	"e-comm-backend/models"
 	"e-comm-backend/routes"
 	"fmt"
+	"net/http"
 	"os"
 	"strings"
 	"time"
@@ -57,10 +58,12 @@ func main() {
 	limiter := tollbooth.NewLimiter(10, nil)
 	r.Use(tollbooth_gin.LimitHandler(limiter))
 
-	// Debug logging middleware
+	// Serve static files with a fallback to placeholder.webp
 	r.Use(func(c *gin.Context) {
-		fmt.Printf("[DEBUG] Request: %s %s\n", c.Request.Method, c.Request.URL.Path)
 		c.Next()
+		if c.Writer.Status() == http.StatusNotFound && strings.HasPrefix(c.Request.URL.Path, "/api/static/images/") {
+			c.File("./static/placeholder.webp")
+		}
 	})
 
 	r.Static("/api/static/images", "./static/images")
