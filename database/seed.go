@@ -1,7 +1,7 @@
 package database
 
 import (
-	"e-comm-backend/models"
+	"e-comm-api/models"
 	"encoding/json"
 	"os"
 

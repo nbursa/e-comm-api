@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"e-comm-backend/controllers"
+	"e-comm-api/controllers"
 
 	"github.com/gin-gonic/gin"
 )

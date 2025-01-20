@@ -1,1 +1,1 @@
-web: /app/bin/e-comm-backend
+web: /app/bin/e-comm-api

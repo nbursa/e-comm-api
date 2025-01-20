@@ -1,10 +1,10 @@
 package main
 
 import (
-	"e-comm-backend/controllers"
-	"e-comm-backend/database"
-	"e-comm-backend/models"
-	"e-comm-backend/routes"
+	"e-comm-api/controllers"
+	"e-comm-api/database"
+	"e-comm-api/models"
+	"e-comm-api/routes"
 	"fmt"
 	"net/http"
 	"os"

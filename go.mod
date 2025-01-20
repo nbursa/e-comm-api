@@ -1,4 +1,4 @@
-module e-comm-backend
+module e-comm-api
 
 go 1.22
 

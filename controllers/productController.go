@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"e-comm-backend/models"
+	"e-comm-api/models"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -81,9 +81,30 @@ func (pc *ProductController) GetProducts(c *gin.Context) {
 
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+
+	search := c.DefaultQuery("search", "")
+	minPrice, _ := strconv.ParseFloat(c.DefaultQuery("minPrice", "0"), 64)
+	maxPrice, _ := strconv.ParseFloat(c.DefaultQuery("maxPrice", "999999"), 64)
+	sortBy := c.DefaultQuery("sortBy", "id")
+	sortOrder := c.DefaultQuery("sortOrder", "asc")
+	category := c.DefaultQuery("category", "all")
+
 	offset := (page - 1) * limit
 
-	if err := pc.DB.Model(&models.Product{}).Count(&total).Error; err != nil {
+	query := pc.DB.Model(&models.Product{})
+
+	// Filters
+	if search != "" {
+		query = query.Where("name LIKE ?", "%"+search+"%")
+	}
+	if category != "all" {
+		query = query.Where("category = ?", category)
+	}
+
+	query = query.Where("price BETWEEN ? AND ?", minPrice, maxPrice)
+
+	// Count total products after applying filters
+	if err := query.Count(&total).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"status": "error",
 			"error": ErrorResponse{
@@ -95,7 +116,14 @@ func (pc *ProductController) GetProducts(c *gin.Context) {
 		return
 	}
 
-	if err := pc.DB.Limit(limit).Offset(offset).Find(&products).Error; err != nil {
+	// Sorting
+	query = query.Order(sortBy + " " + sortOrder)
+
+	// Pagination
+	query = query.Offset(offset).Limit(limit)
+
+	// Query
+	if err := query.Find(&products).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"status": "error",
 			"error": ErrorResponse{
