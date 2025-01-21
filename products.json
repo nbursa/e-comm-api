@@ -339,25 +339,6 @@
     }
   },
   {
-    "name": "2-Running Jacket",
-    "price": 75,
-    "quantity": 10,
-    "description": "Waterproof running jacket designed to keep you dry and comfortable during your runs. Features breathable fabric and reflective elements for safety.",
-    "category": "Clothing",
-    "image": "/static/images/runningjacket.webp",
-    "title": "Waterproof Running Jacket",
-    "discount": true,
-    "discountedPrice": 65,
-    "additionalImages": [
-      "/static/images/runningjacket1.webp",
-      "/static/images/runningjacket2.webp"
-    ],
-    "rating": {
-      "average": 4.6,
-      "count": 70
-    }
-  },
-  {
     "name": "2-Backpack",
     "price": 60,
     "quantity": 20,
@@ -535,74 +516,6 @@
     "rating": {
       "average": 4.5,
       "count": 40
-    }
-  },
-  {
-    "name": "2-Sunglasses",
-    "price": 120,
-    "quantity": 20,
-    "description": "Polarized sunglasses that provide excellent UV protection and reduce glare. Perfect for outdoor activities and driving.",
-    "category": "Accessories",
-    "image": "/static/images/sunglasses.webp",
-    "title": "Polarized Sunglasses",
-    "additionalImages": [
-      "/static/images/sunglasses1.webp",
-      "/static/images/sunglasses2.webp"
-    ],
-    "rating": {
-      "average": 4.5,
-      "count": 80
-    }
-  },
-  {
-    "name": "2-Tennis Racket",
-    "price": 150,
-    "quantity": 10,
-    "description": "Lightweight tennis racket designed for both beginners and advanced players. Provides excellent control and power.",
-    "category": "Sports",
-    "image": "/static/images/tennisracket.webp",
-    "title": "Lightweight Tennis Racket",
-    "additionalImages": [
-      "/static/images/tennisracket1.webp",
-      "/static/images/tennisracket2.webp"
-    ],
-    "rating": {
-      "average": 4.4,
-      "count": 60
-    }
-  },
-  {
-    "name": "2-Soccer Ball",
-    "price": 30,
-    "quantity": 20,
-    "description": "Official size soccer ball that is perfect for both training and match play. Made with durable materials for long-lasting performance.",
-    "category": "Sports",
-    "image": "/static/images/soccerball.webp",
-    "title": "Official Size Soccer Ball",
-    "additionalImages": [
-      "/static/images/soccerball1.webp",
-      "/static/images/soccerball2.webp"
-    ],
-    "rating": {
-      "average": 4.3,
-      "count": 100
-    }
-  },
-  {
-    "name": "2-Basketball",
-    "price": 40,
-    "quantity": 15,
-    "description": "Indoor/outdoor basketball with excellent grip and durability. Ideal for players of all skill levels.",
-    "category": "Sports",
-    "image": "/static/images/basketball.webp",
-    "title": "Indoor/Outdoor Basketball",
-    "additionalImages": [
-      "/static/images/basketball1.webp",
-      "/static/images/basketball2.webp"
-    ],
-    "rating": {
-      "average": 4.5,
-      "count": 90
     }
   },
   {
