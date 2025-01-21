@@ -35,4 +35,4 @@ go.work
 
 # Compiled binary
 /shop.db
-/products.json
+# /products.json

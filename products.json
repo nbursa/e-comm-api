@@ -1,0 +1,627 @@
+[
+  {
+    "name": "2-Smart TV 2",
+    "price": 1000,
+    "quantity": 5,
+    "description": "Experience the ultimate in home entertainment with our 4K smart TV. Featuring stunning picture quality, vibrant colors, and a sleek design, this TV is perfect for movie nights, gaming, and streaming your favorite shows.",
+    "category": "Electronics",
+    "image": "/static/images/smarttv.webp",
+    "title": "4K Smart TV",
+    "discount": true,
+    "discountedPrice": 900,
+    "additionalImages": [
+      "/static/images/smarttv.webp",
+      "/static/images/smarttv1.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 120
+    }
+  },
+  {
+    "name": "2-Gaming Laptop",
+    "price": 2000,
+    "quantity": 3,
+    "description": "High-end gaming laptop with powerful graphics, fast processing speed, and a sleek design. Perfect for gamers who demand the best performance and visuals.",
+    "category": "Electronics",
+    "image": "/static/images/gaminglaptop.webp",
+    "title": "Gaming Laptop",
+    "additionalImages": [
+      "/static/images/gaminglaptop1.webp",
+      "/static/images/gaminglaptop2.webp"
+    ],
+    "rating": {
+      "average": 4.7,
+      "count": 85
+    }
+  },
+  {
+    "name": "2-Running Shoes",
+    "price": 150,
+    "quantity": 10,
+    "description": "Lightweight running shoes designed for comfort and performance. Ideal for runners of all levels, these shoes provide excellent support and cushioning.",
+    "category": "Clothing",
+    "image": "/static/images/runningshoes.webp",
+    "title": "Running Shoes",
+    "discount": true,
+    "discountedPrice": 120,
+    "additionalImages": [
+      "/static/images/runningshoes1.webp",
+      "/static/images/runningshoes2.webp"
+    ],
+    "rating": {
+      "average": 4.3,
+      "count": 200
+    }
+  },
+  {
+    "name": "2-Sofa",
+    "price": 800,
+    "quantity": 2,
+    "description": "Luxurious leather sofa that combines style and comfort. Perfect for any living room, this sofa offers ample seating space and a modern design.",
+    "category": "Furniture",
+    "image": "",
+    "title": "Leather Sofa",
+    "additionalImages": [
+      "/static/images/sofa1.webp",
+      "/static/images/sofa2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 50
+    }
+  },
+  {
+    "name": "2-Refrigerator",
+    "price": 1200,
+    "quantity": 5,
+    "description": "Keep your food fresh and organized with our large refrigerator. Featuring spacious compartments, adjustable shelves, and energy-efficient technology, this refrigerator is a must-have for any kitchen.",
+    "category": "Home Appliances",
+    "image": "/static/images/refrigerator.webp",
+    "title": "Large Refrigerator",
+    "discount": true,
+    "discountedPrice": 1100,
+    "additionalImages": [
+      "/static/images/refrigerator1.webp",
+      "/static/images/refrigerator2.webp"
+    ],
+    "rating": {
+      "average": 4.8,
+      "count": 75
+    }
+  },
+  {
+    "name": "2-Dining Table",
+    "price": 500,
+    "quantity": 3,
+    "description": "Elegant wooden dining table that adds a touch of sophistication to any dining room. With its sturdy construction and timeless design, this table is perfect for family meals and entertaining guests.",
+    "category": "Furniture",
+    "image": "/static/images/diningtable.webp",
+    "title": "Wooden Dining Table",
+    "additionalImages": [
+      "/static/images/diningtable1.webp",
+      "/static/images/diningtable2.webp"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 40
+    }
+  },
+  {
+    "name": "2-Laptop",
+    "price": 1200,
+    "quantity": 10,
+    "description": "High-performance laptop with the latest technology. Ideal for work, study, and entertainment, this laptop offers fast processing speed, ample storage, and a sleek design.",
+    "category": "Electronics",
+    "image": "/static/images/laptop.webp",
+    "title": "High-Performance Laptop",
+    "discount": true,
+    "discountedPrice": 1100,
+    "additionalImages": [
+      "/static/images/laptop1.webp",
+      "/static/images/laptop2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 95
+    }
+  },
+  {
+    "name": "2-Smartphone",
+    "price": 800,
+    "quantity": 20,
+    "description": "Stay connected with the latest smartphone. Featuring a high-resolution display, powerful camera, and long-lasting battery, this smartphone is perfect for staying in touch with friends and family.",
+    "category": "Electronics",
+    "image": "/static/images/smartphone.webp",
+    "title": "Latest Smartphone",
+    "additionalImages": [
+      "/static/images/smartphone1.webp",
+      "/static/images/smartphone2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 150
+    }
+  },
+  {
+    "name": "2-T-Shirt",
+    "price": 20,
+    "quantity": 50,
+    "description": "Comfortable cotton t-shirt that is perfect for everyday wear. Available in a variety of colors and sizes, this t-shirt is a wardrobe essential.",
+    "category": "Clothing",
+    "image": "/static/images/tshirt.webp",
+    "title": "Cotton T-Shirt",
+    "discount": true,
+    "discountedPrice": 15,
+    "additionalImages": [
+      "/static/images/tshirt1.webp",
+      "/static/images/tshirt2.webp"
+    ],
+    "rating": {
+      "average": 4.2,
+      "count": 300
+    }
+  },
+  {
+    "name": "2-Sneakers",
+    "price": 100,
+    "quantity": 15,
+    "description": "Comfortable running shoes designed for everyday wear. These sneakers provide excellent support and cushioning, making them perfect for both casual and athletic activities.",
+    "category": "Clothing",
+    "image": "/static/images/sneakers.webp",
+    "title": "Everyday Sneakers",
+    "additionalImages": [
+      "/static/images/sneakers1.webp",
+      "/static/images/sneakers2.webp"
+    ],
+    "rating": {
+      "average": 4.3,
+      "count": 180
+    }
+  },
+  {
+    "name": "2-Blender",
+    "price": 50,
+    "quantity": 10,
+    "description": "Versatile kitchen blender that makes it easy to prepare smoothies, soups, and sauces. With its powerful motor and durable blades, this blender is a must-have for any kitchen.",
+    "category": "Home Appliances",
+    "image": "/static/images/blender.webp",
+    "title": "Kitchen Blender",
+    "discount": true,
+    "discountedPrice": 45,
+    "additionalImages": [
+      "/static/images/blender1.webp",
+      "/static/images/blender2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 60
+    }
+  },
+  {
+    "name": "2-Chair",
+    "price": 75,
+    "quantity": 5,
+    "description": "Ergonomic office chair that provides comfort and support during long hours of work. Featuring adjustable height and lumbar support, this chair is perfect for any home or office.",
+    "category": "Furniture",
+    "image": "/static/images/chair.webp",
+    "title": "Ergonomic Office Chair",
+    "additionalImages": [
+      "/static/images/chair1.webp",
+      "/static/images/chair2.webp"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 70
+    }
+  },
+  {
+    "name": "2-Headphones",
+    "price": 150,
+    "quantity": 25,
+    "description": "Experience immersive sound with our noise-cancelling headphones. Perfect for music lovers and professionals, these headphones offer superior sound quality and comfort.",
+    "category": "Electronics",
+    "image": "/static/images/headphones.webp",
+    "title": "Noise-Cancelling Headphones",
+    "discount": true,
+    "discountedPrice": 130,
+    "additionalImages": [
+      "/static/images/headphones1.webp",
+      "/static/images/headphones2.webp"
+    ],
+    "rating": {
+      "average": 4.7,
+      "count": 110
+    }
+  },
+  {
+    "name": "2-Keyboard",
+    "price": 40,
+    "quantity": 30,
+    "description": "Mechanical keyboard with responsive keys and customizable backlighting. Ideal for gamers and professionals, this keyboard offers a comfortable typing experience.",
+    "category": "Electronics",
+    "image": "/static/images/keyboard.webp",
+    "title": "Mechanical Keyboard",
+    "additionalImages": [
+      "/static/images/keyboard1.webp",
+      "/static/images/keyboard2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 90
+    }
+  },
+  {
+    "name": "2-Desk Lamp",
+    "price": 35,
+    "quantity": 10,
+    "description": "LED desk lamp with adjustable brightness and color temperature. Perfect for reading, studying, and working, this lamp provides ample lighting and a modern design.",
+    "category": "Home Appliances",
+    "image": "/static/images/desklamp.webp",
+    "title": "LED Desk Lamp",
+    "discount": true,
+    "discountedPrice": 30,
+    "additionalImages": [
+      "/static/images/desklamp1.webp",
+      "/static/images/desklamp2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 50
+    }
+  },
+  {
+    "name": "2-Sunglasses",
+    "price": 120,
+    "quantity": 20,
+    "description": "Polarized sunglasses that provide excellent UV protection and reduce glare. Perfect for outdoor activities and driving.",
+    "category": "Accessories",
+    "image": "/static/images/sunglasses.webp",
+    "title": "Polarized Sunglasses",
+    "additionalImages": [
+      "/static/images/sunglasses1.webp",
+      "/static/images/sunglasses2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 80
+    }
+  },
+  {
+    "name": "2-Tennis Racket",
+    "price": 150,
+    "quantity": 10,
+    "description": "Lightweight tennis racket designed for both beginners and advanced players. Provides excellent control and power.",
+    "category": "Sports",
+    "image": "/static/images/tennisracket.webp",
+    "title": "Lightweight Tennis Racket",
+    "additionalImages": [
+      "/static/images/tennisracket1.webp",
+      "/static/images/tennisracket2.webp"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 60
+    }
+  },
+  {
+    "name": "2-Soccer Ball",
+    "price": 30,
+    "quantity": 20,
+    "description": "Official size soccer ball that is perfect for both training and match play. Made with durable materials for long-lasting performance.",
+    "category": "Sports",
+    "image": "/static/images/soccerball.webp",
+    "title": "Official Size Soccer Ball",
+    "additionalImages": [
+      "/static/images/soccerball1.webp",
+      "/static/images/soccerball2.webp"
+    ],
+    "rating": {
+      "average": 4.3,
+      "count": 100
+    }
+  },
+  {
+    "name": "2-Basketball",
+    "price": 40,
+    "quantity": 15,
+    "description": "Indoor/outdoor basketball with excellent grip and durability. Ideal for players of all skill levels.",
+    "category": "Sports",
+    "image": "/static/images/basketball.webp",
+    "title": "Indoor/Outdoor Basketball",
+    "additionalImages": [
+      "/static/images/basketball1.webp",
+      "/static/images/basketball2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 90
+    }
+  },
+  {
+    "name": "2-Running Jacket",
+    "price": 75,
+    "quantity": 10,
+    "description": "Waterproof running jacket designed to keep you dry and comfortable during your runs. Features breathable fabric and reflective elements for safety.",
+    "category": "Clothing",
+    "image": "/static/images/runningjacket.webp",
+    "title": "Waterproof Running Jacket",
+    "discount": true,
+    "discountedPrice": 65,
+    "additionalImages": [
+      "/static/images/runningjacket1.webp",
+      "/static/images/runningjacket2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 70
+    }
+  },
+  {
+    "name": "2-Backpack",
+    "price": 60,
+    "quantity": 20,
+    "description": "Durable travel backpack with multiple compartments and padded straps for comfort. Perfect for daily use and travel.",
+    "category": "Accessories",
+    "image": "/static/images/backpack.jpg",
+    "title": "Durable Travel Backpack",
+    "additionalImages": [
+      "/static/images/backpack1.jpg",
+      "/static/images/backpack2.jpg"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 50
+    }
+  },
+  {
+    "name": "2-Wristwatch",
+    "price": 200,
+    "quantity": 15,
+    "description": "Luxury wristwatch with a sleek design and high-quality materials. Features a precise movement and water resistance.",
+    "category": "Accessories",
+    "image": "/static/images/wristwatch.webp",
+    "title": "Luxury Wristwatch",
+    "discount": true,
+    "discountedPrice": 180,
+    "additionalImages": [
+      "/static/images/wristwatch1.webp",
+      "/static/images/wristwatch2.webp"
+    ],
+    "rating": {
+      "average": 4.7,
+      "count": 40
+    }
+  },
+  {
+    "name": "2-Coffee Maker",
+    "price": 100,
+    "quantity": 8,
+    "description": "Programmable coffee maker with a built-in grinder and multiple brew settings. Perfect for coffee enthusiasts.",
+    "category": "Home Appliances",
+    "image": "/static/images/coffeemaker.webp",
+    "title": "Programmable Coffee Maker",
+    "discount": true,
+    "discountedPrice": 90,
+    "additionalImages": [
+      "/static/images/coffeemaker1.webp",
+      "/static/images/coffeemaker2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 60
+    }
+  },
+  {
+    "name": "2-Microwave",
+    "price": 150,
+    "quantity": 5,
+    "description": "Compact microwave oven with multiple power levels and a sleek design. Ideal for small kitchens and dorm rooms.",
+    "category": "Home Appliances",
+    "image": "/static/images/microwave.webp",
+    "title": "Compact Microwave Oven",
+    "additionalImages": [
+      "/static/images/microwave1.webp",
+      "/static/images/microwave2.webp"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 30
+    }
+  },
+  {
+    "name": "2-Running Shorts",
+    "price": 25,
+    "quantity": 40,
+    "description": "Breathable running shorts with moisture-wicking fabric and a comfortable fit. Perfect for workouts and casual wear.",
+    "category": "Clothing",
+    "image": "/static/images/runningshorts.webp",
+    "title": "Breathable Running Shorts",
+    "discount": true,
+    "discountedPrice": 20,
+    "additionalImages": [
+      "/static/images/runningshorts1.webp",
+      "/static/images/runningshorts2.webp"
+    ],
+    "rating": {
+      "average": 4.3,
+      "count": 80
+    }
+  },
+  {
+    "name": "2-Gaming Mouse",
+    "price": 50,
+    "quantity": 30,
+    "description": "High-precision gaming mouse with customizable buttons and RGB lighting. Ideal for gamers who demand accuracy and performance.",
+    "category": "Electronics",
+    "image": "/static/images/gamingmouse.webp",
+    "title": "High-Precision Gaming Mouse",
+    "additionalImages": [
+      "/static/images/gamingmouse1.webp",
+      "/static/images/gamingmouse2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 70
+    }
+  },
+  {
+    "name": "2-Tablet",
+    "price": 500,
+    "quantity": 10,
+    "description": "High-resolution tablet with a powerful processor and long battery life. Perfect for work, entertainment, and browsing.",
+    "category": "Electronics",
+    "image": "/static/images/tablet.webp",
+    "title": "High-Resolution Tablet",
+    "discount": true,
+    "discountedPrice": 450,
+    "additionalImages": [
+      "/static/images/tablet1.webp",
+      "/static/images/tablet2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 50
+    }
+  },
+  {
+    "name": "2-Water Bottle",
+    "price": 20,
+    "quantity": 50,
+    "description": "Insulated stainless steel water bottle that keeps your drinks cold for hours. Features a leak-proof lid and a durable design.",
+    "category": "Accessories",
+    "image": "/static/images/waterbottle.webp",
+    "title": "Insulated Stainless Steel Water Bottle",
+    "additionalImages": [
+      "/static/images/waterbottle1.webp",
+      "/static/images/waterbottle2.webp"
+    ],
+    "rating": {
+      "average": 4.7,
+      "count": 100
+    }
+  },
+  {
+    "name": "2-Yoga Mat",
+    "price": 30,
+    "quantity": 25,
+    "description": "Non-slip yoga mat with extra cushioning for comfort and support. Ideal for yoga, pilates, and other floor exercises.",
+    "category": "Fitness",
+    "image": "/static/images/yogamat.webp",
+    "title": "Non-Slip Yoga Mat",
+    "discount": true,
+    "discountedPrice": 25,
+    "additionalImages": [
+      "/static/images/yogamat1.webp",
+      "/static/images/yogamat2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 60
+    }
+  },
+  {
+    "name": "2-Dumbbells",
+    "price": 100,
+    "quantity": 15,
+    "description": "Adjustable dumbbells that allow you to customize your weight training routine. Perfect for home gyms and fitness enthusiasts.",
+    "category": "Fitness",
+    "image": "/static/images/dumbbells.webp",
+    "title": "Adjustable Dumbbells",
+    "additionalImages": [
+      "/static/images/dumbbells1.webp",
+      "/static/images/dumbbells2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 40
+    }
+  },
+  {
+    "name": "2-Sunglasses",
+    "price": 120,
+    "quantity": 20,
+    "description": "Polarized sunglasses that provide excellent UV protection and reduce glare. Perfect for outdoor activities and driving.",
+    "category": "Accessories",
+    "image": "/static/images/sunglasses.webp",
+    "title": "Polarized Sunglasses",
+    "additionalImages": [
+      "/static/images/sunglasses1.webp",
+      "/static/images/sunglasses2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 80
+    }
+  },
+  {
+    "name": "2-Tennis Racket",
+    "price": 150,
+    "quantity": 10,
+    "description": "Lightweight tennis racket designed for both beginners and advanced players. Provides excellent control and power.",
+    "category": "Sports",
+    "image": "/static/images/tennisracket.webp",
+    "title": "Lightweight Tennis Racket",
+    "additionalImages": [
+      "/static/images/tennisracket1.webp",
+      "/static/images/tennisracket2.webp"
+    ],
+    "rating": {
+      "average": 4.4,
+      "count": 60
+    }
+  },
+  {
+    "name": "2-Soccer Ball",
+    "price": 30,
+    "quantity": 20,
+    "description": "Official size soccer ball that is perfect for both training and match play. Made with durable materials for long-lasting performance.",
+    "category": "Sports",
+    "image": "/static/images/soccerball.webp",
+    "title": "Official Size Soccer Ball",
+    "additionalImages": [
+      "/static/images/soccerball1.webp",
+      "/static/images/soccerball2.webp"
+    ],
+    "rating": {
+      "average": 4.3,
+      "count": 100
+    }
+  },
+  {
+    "name": "2-Basketball",
+    "price": 40,
+    "quantity": 15,
+    "description": "Indoor/outdoor basketball with excellent grip and durability. Ideal for players of all skill levels.",
+    "category": "Sports",
+    "image": "/static/images/basketball.webp",
+    "title": "Indoor/Outdoor Basketball",
+    "additionalImages": [
+      "/static/images/basketball1.webp",
+      "/static/images/basketball2.webp"
+    ],
+    "rating": {
+      "average": 4.5,
+      "count": 90
+    }
+  },
+  {
+    "name": "2-Running Jacket",
+    "price": 75,
+    "quantity": 10,
+    "description": "Waterproof running jacket designed to keep you dry and comfortable during your runs. Features breathable fabric and reflective elements for safety.",
+    "category": "Clothing",
+    "image": "/static/images/runningjacket.webp",
+    "title": "Waterproof Running Jacket",
+    "discount": true,
+    "discountedPrice": 65,
+    "additionalImages": [
+      "/static/images/runningjacket1.webp",
+      "/static/images/runningjacket2.webp"
+    ],
+    "rating": {
+      "average": 4.6,
+      "count": 70
+    }
+  }
+]
