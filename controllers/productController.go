@@ -103,41 +103,24 @@ func (pc *ProductController) GetProducts(c *gin.Context) {
 
 	query = query.Where("price BETWEEN ? AND ?", minPrice, maxPrice)
 
-	// Count total products after applying filters
-	if err := query.Count(&total).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status": "error",
-			"error": ErrorResponse{
-				Message: "Failed to count products",
-				Code:    "PRODUCTS_COUNT_ERROR",
-				Detail:  err.Error(),
-			},
-		})
-		return
+	// Sorting
+	if sortOrder == "desc" {
+		query = query.Order(sortBy + " desc")
+	} else {
+		query = query.Order(sortBy + " asc")
 	}
 
-	// Sorting
-	query = query.Order(sortBy + " " + sortOrder)
-
 	// Pagination
+	query.Count(&total)
 	query = query.Offset(offset).Limit(limit)
 
-	// Query
 	if err := query.Find(&products).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status": "error",
-			"error": ErrorResponse{
-				Message: "Failed to fetch products",
-				Code:    "PRODUCTS_FETCH_ERROR",
-				Detail:  err.Error(),
-			},
-		})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"data":   products,
+		"data": products,
 		"meta": gin.H{
 			"total": total,
 			"page":  page,

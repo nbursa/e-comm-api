@@ -39,10 +39,9 @@ func main() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	db.AutoMigrate(&models.Product{})
 
-	reseed := os.Getenv("RESEED_DB") == "true"
-	database.SeedDatabase(db, reseed)
+	db.AutoMigrate(&models.Product{})
+	database.SeedDatabase(db)
 
 	r := gin.Default()
 
