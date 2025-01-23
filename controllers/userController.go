@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -133,34 +134,47 @@ func (ctrl *UserController) GetUser(c *gin.Context) {
 
 func (ctrl *UserController) ResetPassword(c *gin.Context) {
 	var requestData struct {
-		Email       string `json:"email"`
-		NewPassword string `json:"new_password"`
+		Email string `json:"email"`
 	}
 	if err := c.ShouldBindJSON(&requestData); err != nil {
+		fmt.Printf("Error binding JSON: %v\n", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
+	fmt.Printf("Request Data: %+v\n", requestData)
+
 	var user models.User
 	if err := ctrl.DB.Where("email = ?", requestData.Email).First(&user).Error; err != nil {
+		fmt.Printf("User not found: %v\n", err)
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
 	}
 
-	user.Password = requestData.NewPassword
-
-	if err := ctrl.DB.Save(&user).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+	// Generate a reset token
+	expirationTime := time.Now().Add(1 * time.Hour)
+	claims := &Claims{
+		Email: user.Email,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	resetToken, err := token.SignedString(jwtKey)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not generate reset token"})
 		return
 	}
 
-	// Send the new password to the user's email
-	if err := sendEmail(user.Email, "Password Reset", fmt.Sprintf("Your new password is: %s", requestData.NewPassword)); err != nil {
+	// Send the reset link to the user's email
+	resetLink := fmt.Sprintf("%s/reset-password?email=%s&token=%s", os.Getenv("CLIENT_BASE_URL"), user.Email, resetToken)
+	if err := sendEmail(user.Email, "Password Reset", fmt.Sprintf("Click the link to reset your password: %s", resetLink)); err != nil {
+		fmt.Printf("Error sending email: %v\n", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to send email"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Password reset successfully"})
+	c.JSON(http.StatusOK, gin.H{"message": "Password reset link sent successfully"})
 }
 
 func sendEmail(to, subject, body string) error {
@@ -170,9 +184,31 @@ func sendEmail(to, subject, body string) error {
 	m.SetHeader("Subject", subject)
 	m.SetBody("text/plain", body)
 
-	d := gomail.NewDialer(os.Getenv("SMTP_HOST"), 587, os.Getenv("SMTP_USER"), os.Getenv("SMTP_PASS"))
+	smtpHost := os.Getenv("SMTP_HOST")
+	smtpPort, err := strconv.Atoi(os.Getenv("SMTP_PORT"))
+	if err != nil {
+		fmt.Printf("Invalid SMTP port: %v\n", err)
+		return fmt.Errorf("invalid SMTP port: %v", err)
+	}
+	smtpUser := os.Getenv("SMTP_USER")
+	smtpPass := os.Getenv("SMTP_PASS")
 
-	return d.DialAndSend(m)
+	// Print the SMTP configuration for debugging
+	fmt.Printf("SMTP Config - Host: %s, Port: %d, User: %s, Pass: %s\n", smtpHost, smtpPort, smtpUser, smtpPass)
+
+	d := gomail.NewDialer(smtpHost, smtpPort, smtpUser, smtpPass)
+	d.SSL = true // Enable SSL/TLS
+
+	// Log the authentication details for debugging (excluding the password)
+	fmt.Printf("Attempting to authenticate with SMTP server using user: %s\n", smtpUser)
+
+	if err := d.DialAndSend(m); err != nil {
+		fmt.Printf("Error sending email: %v\n", err)
+		return err
+	}
+
+	fmt.Println("Email sent successfully")
+	return nil
 }
 
 func (ctrl *UserController) ChangePassword(c *gin.Context) {
@@ -258,4 +294,44 @@ func (ctrl *UserController) UpdateUser(c *gin.Context) {
 			"email": user.Email,
 		},
 	})
+}
+
+func (ctrl *UserController) CompleteResetPassword(c *gin.Context) {
+	var requestData struct {
+		Email       string `json:"email"`
+		Token       string `json:"token"`
+		NewPassword string `json:"newPassword"`
+	}
+	if err := c.ShouldBindJSON(&requestData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	claims := &Claims{}
+	token, err := jwt.ParseWithClaims(requestData.Token, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtKey, nil
+	})
+	if err != nil || !token.Valid {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid or expired token"})
+		return
+	}
+
+	if claims.Email != requestData.Email {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token for the provided email"})
+		return
+	}
+
+	var user models.User
+	if err := ctrl.DB.Where("email = ?", claims.Email).First(&user).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	user.Password = requestData.NewPassword
+	if err := ctrl.DB.Save(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Password reset successfully"})
 }

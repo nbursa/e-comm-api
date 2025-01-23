@@ -28,6 +28,11 @@ func main() {
 		}
 	}
 
+	fmt.Printf("SMTP_HOST: %s\n", os.Getenv("SMTP_HOST"))
+	fmt.Printf("SMTP_PORT: %s\n", os.Getenv("SMTP_PORT"))
+	fmt.Printf("SMTP_USER: %s\n", os.Getenv("SMTP_USER"))
+	fmt.Printf("SMTP_PASS: %s\n", os.Getenv("SMTP_PASS"))
+
 	// Set CORS origins based on environment
 	origin := os.Getenv("CORS_ORIGIN")
 	var allowedOrigins []string = strings.Split(origin, ",")

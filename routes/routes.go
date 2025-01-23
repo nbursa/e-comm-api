@@ -15,6 +15,7 @@ func RegisterRoutes(r *gin.Engine, productController *controllers.ProductControl
 		api.POST("/auth/register", userController.RegisterUser)
 		api.POST("/auth/login", userController.LoginUser)
 		api.POST("/auth/reset-password", userController.ResetPassword)
+		api.POST("/auth/complete-reset-password", userController.CompleteResetPassword) 
 		api.GET("/products/categories", productController.GetCategories)
 		api.GET("/products/category/:category", productController.GetProductsByCategory)
 		api.GET("/products", productController.GetProducts)
