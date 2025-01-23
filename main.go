@@ -40,7 +40,8 @@ func main() {
 		panic("failed to connect database")
 	}
 
-	db.AutoMigrate(&models.Product{})
+	// Migrate the schema
+	db.AutoMigrate(&models.Product{}, &models.User{})
 	database.SeedDatabase(db)
 
 	r := gin.Default()
@@ -68,7 +69,8 @@ func main() {
 	r.Static("/api/static/images", "./static/images")
 
 	productController := &controllers.ProductController{DB: db}
-	routes.RegisterRoutes(r, productController)
+	userController := &controllers.UserController{DB: db}
+	routes.RegisterRoutes(r, productController, userController, db)
 
 	// SPA fallback
 	r.NoRoute(func(c *gin.Context) {
